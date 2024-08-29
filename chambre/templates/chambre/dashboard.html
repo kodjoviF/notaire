@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block content %}
+  <h1>Tableau de bord</h1>
+  <p>Bienvenue sur votre tableau de bord !</p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Informations de compte</h5>
+          <p class="card-text">Nom : {{ membre.nom }}</p>
+          <p class="card-text">Prénom : {{ membre.prenom }}</p>
+          <p class="card-text">Email : {{ membre.email }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Documents</h5>
+          <p class="card-text">Vous avez {{ documents.count }} documents enregistrés.</p>
+          <a href="{% url 'documents' %}" class="btn btn-primary">Voir les documents</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Activités</h5>
+          <p class="card-text">Vous avez participé à {{ activites.count }} activités.</p>
+          <a href="{% url 'activites' %}" class="btn btn-primary">Voir les activités</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ajoutez ici vos fichiers CSS personnalisés -->
+  <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // Ajoutez ici votre code JavaScript personnalisé
+  </script>
+  <!-- Ajoutez ici vos fichiers JavaScript personnalisés -->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

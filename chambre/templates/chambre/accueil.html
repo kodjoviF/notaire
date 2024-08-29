@@ -1,0 +1,114 @@
+{% extends "chambre/base.html" %}
+{% load static %}
+
+{% block title %}Accueil - Chambre des Notaires du Togo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Section Hero -->
+    <section class="hero-section py-5 text-center">
+        <h1 class="display-4 mb-4">Bienvenue à la Chambre des Notaires du Togo</h1>
+        <p class="lead mb-4">Votre partenaire de confiance pour tous vos besoins notariaux</p>
+        <a href="{% url 'services' %}" class="btn btn-primary btn-lg">Découvrir nos services</a>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="about-section py-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>À propos de nous</h2>
+                <p>La Chambre des Notaires du Togo est l'organe représentatif de la profession notariale au Togo. Nous veillons à la qualité et à l'intégrité des services notariaux dans tout le pays.</p>
+                <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/notaire-travail.jpg' %}" alt="Notaire au travail" class="img-fluid rounded">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section class="services-section py-5 bg-light">
+        <h2 class="text-center mb-4">Nos services</h2>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Actes notariés</h5>
+                        <p class="card-text">Rédaction et authentification de tous types d'actes juridiques.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Conseil juridique</h5>
+                        <p class="card-text">Expertise et conseils dans divers domaines du droit.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Successions</h5>
+                        <p class="card-text">Gestion et règlement des successions et des héritages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'services' %}" class="btn btn-primary">Voir tous nos services</a>
+        </div>
+    </section>
+
+    <!-- Section Actualités -->
+    <section class="news-section py-5">
+        <h2 class="text-center mb-4">Dernières actualités</h2>
+        <div class="row">
+            {% for news in latest_news %}
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.content|truncatewords:20 }}</p>
+                        <a href="#" class="btn btn-link">Lire la suite</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Publié le {{ news.date|date:"d F Y" }}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center">Aucune actualité pour le moment.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact-section py-5 bg-light">
+        <h2 class="text-center mb-4">Contactez-nous</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

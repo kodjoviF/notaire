@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Activités{% endblock %}
+
+{% block content %}
+  <h1>Activités</h1>
+  <p>Ceci est la page d'activités de la Chambre des Notaires du Togo.</p>
+
+  <div class="row">
+    {% for activite in activites %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ activite.titre }}</h5>
+            <p class="card-text">{{ activite.date }}</p>
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Ajoutez ici vos fichiers CSS personnalisés -->
+  <link href="{% static 'css/activites.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // Ajoutez ici votre code JavaScript personnalisé
+  </script>
+  <!-- Ajoutez ici vos fichiers JavaScript personnalisés -->
+  <script src="{% static 'js/activites.js' %}"></script>
+{% endblock %}

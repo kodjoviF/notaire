@@ -1,0 +1,47 @@
+{% extends "chambre/base.html" %}
+
+{% block title %}Membres de la Chambre des Notaires du Togo{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Membres de la Chambre des Notaires</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form method="get" class="form-inline">
+                <div class="input-group">
+                    {{ form.search_query }}
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if membres %}
+        <div class="row">
+            {% for membre in membres %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if membre.photo %}
+                            <img src="{{ membre.photo.url }}" class="card-img-top" alt="{{ membre.nom }} {{ membre.prenom }}">
+                        {% else %}
+                            <img src="{% static 'images/default_profile.png' %}" class="card-img-top" alt="Photo de profil par défaut">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ membre.nom }} {{ membre.prenom }}</h5>
+                            <p class="card-text">
+                                <strong>Email:</strong> {{ membre.email }}<br>
+                                <strong>Téléphone:</strong> {{ membre.telephone }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun membre trouvé.</p>
+    {% endif %}
+</div>
+{% endblock %}
