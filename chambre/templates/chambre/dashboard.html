@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
+
+#tag static
+{% load static %}
+
+{% static 'chemin/vers/votre/fichier.css' as css_file %}
+
+<link rel="stylesheet" type="text/css" href="{{ css_file }}">
+
+# ____________
+
+
 {% block title %}Tableau de bord{% endblock %}
 
 {% block content %}
