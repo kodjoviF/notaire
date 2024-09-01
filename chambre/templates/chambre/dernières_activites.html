@@ -1,0 +1,25 @@
+{% extends "chambre/base.html" %}
+#tag static
+{% load static %}
+
+{% static 'chemin/vers/votre/fichier.css' as css_file %}
+
+<link rel="stylesheet" type="text/css" href="{{ css_file }}">
+
+#________________
+
+
+
+
+
+{% for activite in activites %}
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ activite.titre }}</h5>
+        <p class="card-text">{{ activite.contenu }}</p>
+        <a href="#" class="btn btn-primary">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}

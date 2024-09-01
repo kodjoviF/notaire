@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     
     {% load static %}
-    <!-- Votre CSS personnalisé -->
+    <!-- mon CSS personnalisé -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     {% block extra_css %}{% endblock %}
@@ -50,7 +51,7 @@
                                 <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                                <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Connexion</a>
                             </li>
                         {% else %}
                             <li class="nav-item">

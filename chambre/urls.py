@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import ActiviteListAPIView
 from . import views
 
 urlpatterns = [
@@ -8,5 +9,8 @@ urlpatterns = [
     path('activites/', views.activites, name='activites'),
     path('actualites/', views.actualites, name='actualites'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('', views.dernières_actualités, name='dernières_actualités'),
+    path('', views.dernières_activites, name='dernières_activites'),
+    
+    # api urls
+    path('api/activites/', ActiviteListAPIView.as_view(), name='api-activites'),
 ]

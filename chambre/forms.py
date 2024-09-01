@@ -2,13 +2,15 @@ from django import forms
 from .models import Document
 from django.contrib.auth.models import User
 
+
+# Formulaire qui recupère les documents
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
         fields = ['titre', 'type_document', 'fichier']
         
-        from django import forms
-
+        
+ # Formulaire qui recupère l'entrée de la recherche faite       
 class MembreSearchForm(forms.Form):
     search_query = forms.CharField(
         required=False,
@@ -19,6 +21,8 @@ class MembreSearchForm(forms.Form):
         })
     )
     
+
+# Formulaire de connexion qui recupère les identifiants de la connexion
 class ConnexionForm(forms.Form):
     username = forms.CharField(max_length=255)
     password = forms.CharField(max_length=255, widget=forms.PasswordInput)
@@ -27,6 +31,8 @@ class ConnexionForm(forms.Form):
         cleaned_data = super().clean()
         username = cleaned_data.get('username')
         password = cleaned_data.get('password')
+        
+# Gestion des exceptions
 
         try:
             user = User.objects.get(username=username)

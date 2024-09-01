@@ -1,23 +1,12 @@
-{% extends 'base.html' %}
-
-
-
-#tag static
+{% extends "chambre/base.html" %}
 
 {% load static %}
-
-{% static 'chemin/vers/votre/fichier.css' as css_file %}
-
-<link rel="stylesheet" type="text/css" href="{{ css_file }}">
-
-####### _________________________
-
 
 {% block title %}Activités{% endblock %}
 
 {% block content %}
   <h1>Activités</h1>
-  <p>Ceci est la page d'activités de la Chambre des Notaires du Togo.</p>
+  <p>activités de la Chambre des Notaires du Togo.</p>
 
   <div class="row">
     {% for activite in activites %}
@@ -33,7 +22,7 @@
     {% endfor %}
   </div>
 
-  <!-- Ajoutez ici vos fichiers CSS personnalisés -->
+  <!-- CSS personnalisé -->
   <link href="{% static 'css/activites.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -41,6 +30,6 @@
   <script>
     // Ajoutez ici votre code JavaScript personnalisé
   </script>
-  <!-- Ajoutez ici vos fichiers JavaScript personnalisés -->
+  <!-- JavaScript personnalisé -->
   <script src="{% static 'js/activites.js' %}"></script>
 {% endblock %}

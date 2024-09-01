@@ -30,9 +30,7 @@ class Document(models.Model):
         return self.titre
 
 
-from django.db import models
-
-
+# Classe qui recupère et stock les actualités de la chambre 
 class Actualite(models.Model):
     titre = models.CharField(max_length=255)
     contenu = models.TextField()
@@ -43,7 +41,8 @@ class Actualite(models.Model):
     def __str__(self):
         return self.titre
     
-from django.db import models
+
+#Classe qui recupère et stock les actvités faite par la chambre
 
 class Activite(models.Model):
     titre = models.CharField(max_length=255)

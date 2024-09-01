@@ -5,6 +5,13 @@ from django.db.models import Q
 from .models import Membre, Document,Actualite,Activite
 from .forms import DocumentForm, MembreSearchForm,ConnexionForm
 
+# Import api
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import ActiviteSerializer
+
+
 def accueil(request):
     return render(request, 'chambre/accueil.html')
 
@@ -39,10 +46,8 @@ def membres(request):
 
     return render(request, 'chambre/membres.html', {'membres': membres, 'form': form})
 
-
+# liste d'activités
 def activites(request):
-    
-    # liste d'activités
     activites = [
         {"titre": "Séminaire sur les nouvelles lois", "date": "2024-09-15"},
         {"titre": "Assemblée générale annuelle", "date": "2024-10-01"},
@@ -51,11 +56,14 @@ def activites(request):
     return render(request, 'chambre/activites.html', {'activites': activites})
 
 
+# Cette fonction recupère les 3 dernières activités
+def dernières_activites(request):
+    activites = Activite.objects.order_by('-date_publication')[:3]
+    return render(request, 'dernières_activites.html', {'activites': activites})
 
+
+# liste d'actualités nécessaire
 def actualites(request):
-    
-    
-    # liste d'actualités nécessaire
     actualites = [
         {"titre": "Nouvelle réglementation sur les actes électroniques", "date": "2024-08-01"},
         {"titre": "La Chambre des Notaires accueille 10 nouveaux membres", "date": "2024-07-15"},
@@ -87,7 +95,7 @@ def dashboard(request):
     }
     return render(request, 'chambre/dashboard.html', context)
 
-# Détail de l'afichage des documents
+# Détail de l'affichage des documents( je n'ai crée un template pour cette vue)
 @login_required
 def document_detail(request, pk):
     document = get_object_or_404(Document, pk=pk)
@@ -96,7 +104,7 @@ def document_detail(request, pk):
     return render(request, 'chambre/document_detail.html', {'document': document})
 
 
-# Affichage de la recherche
+# la fonction recupère,filtre avec des requetes et affiche le result
 def recherche(request):
     query = request.GET.get('q')
     membres = Membre.objects.all()
@@ -136,6 +144,9 @@ def connexion(request):
     return render(request, 'connexion.html', {'form': form})
 
 
-def dernières_actualités(request):
-    activites = Activite.objects.order_by('-date_publication')[:3]
-    return render(request, 'dernières_actualités.html', {'activites': activites})
+# cette vue est une api qui recupère la liste des cativités
+class ActiviteListAPIView(APIView):
+    def get(self, request):
+        activites = Activite.objects.all()
+        serializer = ActiviteSerializer(activites, many=True)
+        return Response(serializer.data)
