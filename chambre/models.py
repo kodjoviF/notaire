@@ -9,7 +9,7 @@ class Membre(models.Model):
     telephone = models.CharField(max_length=20)
     email = models.EmailField()
     photo = models.ImageField(upload_to='photos_identite/', blank=True, null=True)
-
+    
     def __str__(self):
         return f"{self.nom} {self.prenom}"
 

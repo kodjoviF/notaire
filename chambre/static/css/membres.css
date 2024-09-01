@@ -1,0 +1,52 @@
+/* Styles pour la page des membres */
+
+.membres {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .membres h2 {
+    margin-top: 0;
+  }
+  
+  .membres ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .membres li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .membres li:last-child {
+    border-bottom: none;
+  }
+  
+  .membres a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .membres a:hover {
+    color: #23527c;
+  }
+  
+  .membres .btn {
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .membres .btn:hover {
+    background-color: #23527c;
+  }
