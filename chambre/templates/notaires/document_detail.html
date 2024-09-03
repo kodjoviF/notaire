@@ -1,0 +1,25 @@
+{% extends 'chambre/base.html' %}
+
+{% block content %}
+  <h1>{{ document.titre }}</h1>
+
+  <p>{{ document.contenu }}</p>
+
+  <a href="{% url 'document_list' %}">Retour à la liste des documents</a>
+
+  <button id="btn-pdf">Afficher en PDF</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.3.1/dist/jspdf.umd.min.js"></script>
+  <script>
+    document.getElementById("btn-pdf").addEventListener("click", function() {
+      var doc = new jsPDF();
+      doc.text("Titre du document : " + "{{ document.titre }}", 10, 10);
+      doc.text("Contenu du document : " + "{{ document.contenu }}", 10, 20);
+      var pdf = doc.output('blob');
+      var link = document.createElement('a');
+      link.href = URL.createObjectURL(pdf);
+      link.download = 'document.pdf';
+      link.click();
+    });
+  </script>
+{% endblock %}

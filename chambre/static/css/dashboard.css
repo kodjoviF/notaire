@@ -1,0 +1,92 @@
+/* Styles pour la page des services */
+
+.services {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .services h1 {
+    margin-top: 0;
+  }
+  
+  .services ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .services li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .services li:last-child {
+    border-bottom: none;
+  }
+  
+  .services a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .services a:hover {
+    color: #23527c;
+  }
+  
+  .services .btn {
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .services .btn:hover {
+    background-color: #23527c;
+  }
+  
+  .services .service {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .services .service h2 {
+    margin-top: 0;
+  }
+  
+  .services .service p {
+    margin-bottom: 20px;
+  }
+  
+  .services .service ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .services .service li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .services .service li:last-child {
+    border-bottom: none;
+  }
+  
+  .services .service a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .services .service a:hover {
+    color: #23527c;
+  }

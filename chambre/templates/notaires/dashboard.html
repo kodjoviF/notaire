@@ -1,0 +1,66 @@
+{% extends "chambre/base.html" %}
+
+#tag static
+{% load static %}
+
+{% static 'chemin/vers/votre/fichier.css' as css_file %}
+
+<link rel="stylesheet" type="text/css" href="{{ css_file }}">
+
+# ____________
+
+
+
+{% block content %}
+  <h1>Dashboard</h1>
+  {% block title %}Tableau de bord{% endblock %}
+  <p>Bienvenue sur votre tableau de bord !</p>
+  <ul>
+    <li><a href="{% url 'document_list' %}">Liste des documents</a></li>
+    <li><a href="{% url 'document_create' %}">Ajouter un document</a></li>
+    <li><a href="{% url 'document_delete' pk=1 %}">Supprimer un document</a></li>
+  </ul>
+  <div id="content">
+    <!-- Ajoutez ici votre code HTML pour les cartes -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Informations de compte</h5>
+            <p class="card-text">Nom : {{ membre.nom }}</p>
+            <p class="card-text">Prénom : {{ membre.prenom }}</p>
+            <p class="card-text">Email : {{ membre.email }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Documents</h5>
+            <p class="card-text">Vous avez {{ documents.count }} documents enregistrés.</p>
+            <a href="{% url 'document_list' %}" class="btn btn-primary">Voir les documents</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Activités</h5>
+            <p class="card-text">Vous avez participé à {{ activites.count }} activités.</p>
+            <a href="{% url 'activites' %}" class="btn btn-primary">Voir les activités</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+<!-- Ajoutez ici vos fichiers CSS personnalisés -->
+<link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+{% block extra_js %}
+  <script>
+    // Ajoutez ici votre code JavaScript personnalisé
+  </script>
+  <!-- Ajoutez ici vos fichiers JavaScript personnalisés -->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

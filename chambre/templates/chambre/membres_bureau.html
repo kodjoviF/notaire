@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Titre</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+    </tr>
+    {% for membre in membres %}
+        <tr>
+            <td>{{ membre.titre }}</td>
+            <td>{{ membre.nom }}</td>
+            <td>{{ membre.prenom }}</td>
+        </tr>
+    {% endfor %}
+</table>

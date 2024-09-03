@@ -1,0 +1,13 @@
+{% extends 'chambre/base.html' %}
+
+{% block content %}
+  <h1>Ajouter un nouveau document</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Créer le document</button>
+  </form>
+
+  <p><a href="{% url 'document_list' %}">Retour à la liste des documents</a></p>
+{% endblock %}

@@ -1,0 +1,7 @@
+<!-- Formulaire pour charger un document PDF -->
+<form action="{% url 'charger_document' %}" method="post" enctype="multipart/form-data">
+    <!-- Champ de saisie pour le fichier PDF -->
+    {{ form.as_p }}
+    <!-- Bouton de soumission du formulaire -->
+    <button type="submit">Télécharger le document</button>
+</form>
