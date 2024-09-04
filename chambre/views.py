@@ -36,7 +36,7 @@ def services(request):
 
 # Recuperation de la liste des membres a afficher 
 def membresBureau(request):
-    membres = Membre.objects.all()
+    membres = membresBureau.objects.all()
     return render(request, 'membres_bureau.html', {'membres': membres})
 
 

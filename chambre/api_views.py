@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Activite
-from .serializers import ActiviteSerializer
+from ..notaires.serializers import ActiviteSerializer
 
 
 class ActiviteListAPIView(APIView):
