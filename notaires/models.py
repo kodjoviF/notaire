@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-
 class Membre(AbstractUser):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
@@ -22,6 +21,7 @@ class Membre(AbstractUser):
 
     def __str__(self):
         return f"{self.nom} {self.prenom}"
+    
     
 
 class Document(models.Model):

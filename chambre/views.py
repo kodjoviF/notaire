@@ -36,21 +36,8 @@ def services(request):
 
 # Recuperation de la liste des membres a afficher 
 def membresBureau(request):
-    form = MembreSearchForm(request.GET)
     membres = Membre.objects.all()
-
-    if form.is_valid():
-        search_query = form.cleaned_data.get('search_query')
-        if search_query:
-            membres = membres.filter(
-                Q(nom__icontains=search_query) |
-                Q(prenom__icontains=search_query) |
-                Q(email__icontains=search_query)
-            )
-
-    return render(request, 'chambre/membres.html', {'membres': membres, 'form': form})
-
-
+    return render(request, 'membres_bureau.html', {'membres': membres})
 
 
 # liste d'activités
@@ -64,14 +51,10 @@ def activites(request):
 
 
 
-
-
 # Cette fonction recupère les 3 dernières activités
 def dernières_activites(request):
     activites = Activite.objects.order_by('-date_publication')[:3]
     return render(request, 'dernières_activites.html', {'activites': activites})
-
-
 
 
 

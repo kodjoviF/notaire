@@ -54,11 +54,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+LOGIN_TEMPLATE = 'registration/login.html'
+LOGIN_URL = 'login'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'notaire/templates')],
+        'DIRS': [os.path.join(BASE_DIR,'chambre/templates'),
+                 os.path.join(BASE_DIR, 'notaires/templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

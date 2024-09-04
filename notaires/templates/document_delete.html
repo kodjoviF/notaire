@@ -1,0 +1,14 @@
+{% extends 'chambre/base.html' %}
+
+{% block content %}
+  <h1>Supprimer le document</h1>
+
+  <p>Êtes-vous sûr de vouloir supprimer le document {{ document.titre }} ?</p>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <button type="submit">Supprimer le document</button>
+  </form>
+
+  <a href="{% url 'document_list' %}">Retour à la liste des documents</a>
+{% endblock %}
