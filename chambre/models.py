@@ -50,4 +50,7 @@ class MembreBureau(models.Model):
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)
     
+    def __str__(self):
+        return f"{self.nom} {self.prenom} {self.titre}"
+    
     

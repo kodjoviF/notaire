@@ -8,6 +8,8 @@ from django.core.files import File
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import transaction
 
 from .forms import ConnexionForm, DocumentForm, DocumentChargeForm, RegisterForm
 from chambre.models import Activite
@@ -19,24 +21,26 @@ def dashboard(request):
     """
     Affiche le tableau de bord de l'utilisateur connecté, permettant de gérer les documents.
     """
-    membre = request.user.membre
+    membre = request.user  # L'utilisateur est déjà un Membre
     documents = membre.documents.all()
+
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             document = form.save(commit=False)
             document.membre = membre
             document.save()
-            messages.success(request, 'Document saved successfully.')
+            messages.success(request, 'Document enregistré avec succès.')
             return redirect('dashboard')
     else:
         form = DocumentForm()
+
     context = {
         'membre': membre,
         'documents': documents,
         'form': form
     }
-    return render(request, 'notaires/dashboard.html', context)
+    return render(request, 'dashboard.html', context)# ou une autre page d'erreur générale
 
 @login_required
 def document_list(request):
@@ -45,7 +49,7 @@ def document_list(request):
     """
     documents = Document.objects.all()
     context = {'documents': documents}
-    return render(request, 'notaires/document_list.html', context)
+    return render(request, 'document_list.html', context)
 
 @login_required
 def document_create(request):
@@ -60,7 +64,7 @@ def document_create(request):
             return redirect('document_list')
     else:
         form = DocumentChargeForm()
-    return render(request, 'notaires/document_create.html', {'form': form})
+    return render(request, 'document_create.html', {'form': form})
 
 @login_required
 def charger_document(request):
@@ -85,7 +89,7 @@ def document_delete(request, pk):
         document.delete()
         messages.success(request, 'Document deleted successfully.')
         return redirect('document_list')
-    return render(request, 'notaires/document_delete.html', {'document': document})
+    return render(request, 'document_delete.html', {'document': document})
 
 @login_required
 def afficher_document(request, nom_fichier):
@@ -111,7 +115,7 @@ def recherche_documents(request):
             Q(type_document__icontains=query)
         )
     context = {'documents': documents, 'query': query}
-    return render(request, 'notaires/recherche_documents.html', context)
+    return render(request, 'recherche_documents.html', context)
 
 class ActiviteListAPIView(APIView):
     """
@@ -151,11 +155,11 @@ def register_view(request):
     return render(request, 'notaires/register.html', {'form': form})
 
 def logout_view(request):
-    """
-    Déconnecte l'utilisateur.
-    """
-    logout(request)
-    return redirect('accueil')
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login')
+    else:
+        return HttpResponse('Cette page ne peut être accédée que via la méthode POST.', status=405)
 
 def connexion(request):
     """

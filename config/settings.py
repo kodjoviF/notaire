@@ -54,8 +54,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
-LOGIN_TEMPLATE = 'registration/login.html'
 LOGIN_URL = 'login'
+LOGOUT_URL = '/accounts/logout/'
+LOGIN_TEMPLATE = 'registration/login.html'
+LOGIN_URL = '/accounts/login/'
 
 TEMPLATES = [
     {

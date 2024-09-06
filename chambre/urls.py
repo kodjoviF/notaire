@@ -5,7 +5,7 @@ from .views import ActiviteListAPIView
 urlpatterns = [
     path('', views.accueil, name='accueil'),
     path('services/', views.services, name='services'),
-    path('membres/', views.membresBureau, name='membres'),
+    path('membres/', views.MembreBureau, name='membres_bureau'),
     path('activites/', views.activites, name='activites'),
     path('actualites/', views.actualites, name='actualites'),
     

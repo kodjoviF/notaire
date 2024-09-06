@@ -5,6 +5,7 @@ from django.db.models import Q
 from .models import Actualite,Activite
 from .forms import  MembreSearchForm
 from django.contrib import messages
+from .models import MembreBureau
 
 # Import api
 from rest_framework.views import APIView
@@ -35,9 +36,10 @@ def services(request):
 
 
 # Recuperation de la liste des membres a afficher 
-def membresBureau(request):
-    membres = membresBureau.objects.all()
-    return render(request, 'membres_bureau.html', {'membres': membres})
+def MembreBureau(request):
+    membres = MembreBureau.objects.get(id=1)
+    membres = MembreBureau.objects.all()
+    return render(request, 'chambre/membres_bureau.html', {'membres': membres})
 
 
 # liste d'activités
